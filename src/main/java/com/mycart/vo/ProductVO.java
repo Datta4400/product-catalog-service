@@ -1,11 +1,9 @@
 
 package com.mycart.vo;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
-import com.mycart.domain.Brand;
-import com.mycart.domain.Category;
 import com.mycart.domain.Product;
 
 import lombok.AllArgsConstructor;
@@ -46,7 +44,7 @@ public class ProductVO {
 
     }
 
-    public static final Collection<ProductVO> from(Collection<Product> products) {
+    public static final List<ProductVO> from(List<Product> products) {
 
         return products.stream()
                        .map(ProductVO::from)

@@ -2,9 +2,9 @@
 package com.mycart.vo;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.mycart.domain.Category;
-import com.mycart.domain.Product;
 
 import lombok.Builder;
 import lombok.Data;
@@ -17,11 +17,14 @@ public class CategoryVO {
 
 	private String description;
 
-	List<ProductVO> products;
+	
 
 	public static CategoryVO from(Category category) {
-		return CategoryVO.builder().name(category.getName()).description(category.getDescription())
-				.build();
+		return CategoryVO.builder().name(category.getName()).description(category.getDescription()).build();
+	}
+
+	public static List<CategoryVO> from(List<Category> categories) {
+		return categories.stream().map(CategoryVO::from).collect(Collectors.toList());
 	}
 
 }

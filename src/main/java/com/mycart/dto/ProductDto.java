@@ -24,12 +24,5 @@ public class ProductDto {
     private float size;
 
     private String sku;
-    
-    private String brandName ;
-    
-    private String categoryName ;
-
-    private Brand brand ;
-    
-    private Category category ;
+        
 }

@@ -51,6 +51,7 @@ public class BrandService {
 	}
 
 	public void deleteBrand(@NonNull final Long brandId) {
+		Brand brand = repository.findById(brandId).get();
 		this.repository.deleteById(brandId);
 	}
 

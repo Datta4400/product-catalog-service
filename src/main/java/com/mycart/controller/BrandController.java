@@ -36,6 +36,12 @@ public class BrandController {
 		return this.service.getBrand(id);
 	}
 
+	@DeleteMapping("/{id}")
+	@ResponseStatus(code = HttpStatus.NO_CONTENT)
+	public void deleteBrand(@PathVariable final Long id) throws Exception {
+		this.service.deleteBrand(id);
+	}
+
 	@GetMapping("/{name}")
 	@ResponseStatus(code = HttpStatus.OK)
 	public BrandResponse getBrand(@PathVariable final String name) throws Exception {
@@ -46,13 +52,6 @@ public class BrandController {
 	@ResponseStatus(code = HttpStatus.OK)
 	public Collection<BrandVO> getAllBrand() throws Exception {
 		return this.service.getAllBrands();
-
-	}
-
-	@DeleteMapping("/{id}")
-	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void deleteByBrandId(@PathVariable final Long id) {
-		this.service.deleteBrand(id);
 
 	}
 
