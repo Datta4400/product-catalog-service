@@ -10,7 +10,7 @@ import com.mycart.domain.Category;
 public interface CategoryRepository extends CrudRepository<Category, Long>{
     
     Optional<Category> findOneByName(String name);
-    Optional<Category> findOneByCategoryId(Long categoryId);
+    Optional<Category> findOneById(Long Id);
     
     Collection<Category> findAll();
 

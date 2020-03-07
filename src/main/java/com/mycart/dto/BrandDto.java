@@ -1,7 +1,5 @@
 package com.mycart.dto;
 
-import com.mycart.dto.ProductDto.ProductDtoBuilder;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class BrandDto {
 
-    private String name;
-    private String description ;
+	private String name;
+	private String description;
+
 }

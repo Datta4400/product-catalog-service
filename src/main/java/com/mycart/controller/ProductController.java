@@ -28,6 +28,7 @@ public class ProductController {
 
     @Autowired
     ProductService service;
+    
 
     @GetMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK)
@@ -36,15 +37,13 @@ public class ProductController {
 
     }
 
-	/*
-	 * @PostMapping(consumes = "application/json")
-	 * 
-	 * @ResponseStatus(code = HttpStatus.CREATED) public ProductVO
-	 * addProduct(@RequestBody @NotNull ProductDto productDto) throws Exception {
-	 * return this.service.addProduct(productDto);
-	 * 
-	 * }
-	 */    
+    @GetMapping("/all")
+    @ResponseStatus(code = HttpStatus.OK)
+    public ProductResponse getAllProduct() throws Exception {
+        return this.service.getAllProduct();
+
+    }
+
     @PostMapping(consumes = "application/json")
     @ResponseStatus(code = HttpStatus.CREATED)
     public ProductResponse addProducts(@RequestBody @NotNull Collection<ProductDto> productDtos) throws Exception {

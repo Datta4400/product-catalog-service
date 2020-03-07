@@ -29,8 +29,6 @@ public class ProductSpecificationBuilder {
 		List<Specification<Product>> specs = params.stream().map(ProductSpecification::new).collect(Collectors.toList());
 
 		Specification<Product> result = specs.get(0);
-
-		
 		
 		for (int i = 1; i < params.size(); i++) {
 			result = params.get(i).isOrPredicate() ? Specification.where(result).or(specs.get(i))

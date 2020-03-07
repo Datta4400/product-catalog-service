@@ -1,14 +1,12 @@
 
 package com.mycart.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 import com.mycart.dto.ProductDto;
 
@@ -25,8 +23,8 @@ import lombok.NoArgsConstructor;
 public class Product {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)	
-	private Long productId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
 	private String name;
 
@@ -37,19 +35,16 @@ public class Product {
 	private String sku;
 
 	private double price;
-	
-	private String brandName ;
-	
-	@ManyToOne    
-	@JoinColumn(name="brandId")
-    private Brand brand;
 
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Brand brand;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Category category;
 
 	public static final Product from(ProductDto dto) {
-		return Product.builder().name(dto.getName()).price(dto.getPrice()).color(dto.getColor()).sku(dto.getSku())				
-				.size(dto.getSize())
-				.brandName(dto.getBrandName())
-				.build();
+		return Product.builder().name(dto.getName()).price(dto.getPrice()).color(dto.getColor()).sku(dto.getSku())
+				.size(dto.getSize()).brand(dto.getBrand()).category(dto.getCategory()).build();
 	}
 
 }

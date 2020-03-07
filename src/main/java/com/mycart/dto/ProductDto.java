@@ -1,7 +1,8 @@
 
 package com.mycart.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mycart.domain.Brand;
+import com.mycart.domain.Category;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,15 +24,12 @@ public class ProductDto {
     private float size;
 
     private String sku;
+    
+    private String brandName ;
+    
+    private String categoryName ;
 
-    private String categoryName;
-
-    private String brandName;
-
-    @JsonIgnore
-    private long brandId;
-
-    @JsonIgnore
-    private long categoryId;
-
+    private Brand brand ;
+    
+    private Category category ;
 }

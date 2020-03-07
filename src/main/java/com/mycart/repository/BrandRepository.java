@@ -11,9 +11,9 @@ import com.mycart.domain.Brand;
 public interface BrandRepository extends CrudRepository<Brand, Long> {
 
     Optional<Brand> findOneByName(String name);
-    Optional<Brand> findOneByBrandId(Long brandId);
+    Optional<Brand> findOneById(Long id);
     Collection<Brand> findAll();
     
-    void deleteByBrandId(Long brandId);
+    void deleteById(Long id);
 
 }

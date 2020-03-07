@@ -19,7 +19,7 @@ public class CategoryService {
 
     public CategoryResponse getCategory(final Long categoryId) throws Exception {
 
-        return CategoryResponse.from(this.repository.findOneByCategoryId(categoryId)
+        return CategoryResponse.from(this.repository.findOneById(categoryId)
                                                     .orElseThrow(() -> new Exception()));
     }
 

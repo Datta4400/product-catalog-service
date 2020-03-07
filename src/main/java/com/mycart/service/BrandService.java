@@ -27,9 +27,16 @@ public class BrandService {
 
 	public BrandResponse getBrand(final Long brandId) throws Exception {
 
-		return BrandResponse.from(this.repository.findOneByBrandId(brandId)
+		return BrandResponse.from(this.repository.findOneById(brandId)
 				.orElseThrow(() -> new ProductServiceException(HttpStatus.BAD_REQUEST, ErrorCode.PRODUCT_NOT_FOUND)));
 	}
+	
+	public BrandResponse getBrand(final String name) throws Exception {
+
+		return BrandResponse.from(this.repository.findOneByName(name)
+				.orElseThrow(() -> new ProductServiceException(HttpStatus.BAD_REQUEST, ErrorCode.PRODUCT_NOT_FOUND)));
+	}
+
 
 	public Collection<BrandVO> getAllBrands() throws Exception {
 
@@ -44,7 +51,7 @@ public class BrandService {
 	}
 
 	public void deleteBrand(@NonNull final Long brandId) {
-		this.repository.deleteByBrandId(brandId);
+		this.repository.deleteById(brandId);
 	}
 
 }

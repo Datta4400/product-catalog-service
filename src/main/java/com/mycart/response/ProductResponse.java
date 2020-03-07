@@ -14,10 +14,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProductResponse extends BaseResponse<Collection<ProductVO>> {
 
-	
- 	public static final ProductResponse from(Collection<Product> products) {
+	public static final ProductResponse from(Collection<ProductVO> productVOs) {
 		ProductResponse productResponse = new ProductResponse();
-		productResponse.setData(products.stream().map(ProductVO::from).collect(Collectors.toList()));
+		productResponse.setData(productVOs);
 		return productResponse;
 	}
 

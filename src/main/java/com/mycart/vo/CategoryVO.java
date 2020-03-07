@@ -1,7 +1,7 @@
 
 package com.mycart.vo;
 
-import java.util.Set;
+import java.util.List;
 
 import com.mycart.domain.Category;
 import com.mycart.domain.Product;
@@ -17,7 +17,7 @@ public class CategoryVO {
 
 	private String description;
 
-	Set<Product> products;
+	List<ProductVO> products;
 
 	public static CategoryVO from(Category category) {
 		return CategoryVO.builder().name(category.getName()).description(category.getDescription())

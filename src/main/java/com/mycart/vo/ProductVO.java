@@ -4,28 +4,34 @@ package com.mycart.vo;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+import com.mycart.domain.Brand;
+import com.mycart.domain.Category;
 import com.mycart.domain.Product;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ProductVO {
 
-    private final String name;
+    private  String name;
 
-    private final double price;
+    private  double price;
 
-    private final String color;
+    private  String color;
 
-    private final String sku;
+    private  String sku;
 
-    private final float size;
+    private  float size;
     
-    private final String brand ;
+    private String brand ;
     
-    private final String category ;
+    private  String category ;
 
     public static final ProductVO from(Product product) {
         return ProductVO.builder()
@@ -34,7 +40,8 @@ public class ProductVO {
                         .color(product.getColor())
                         .sku(product.getSku())
                         .size(product.getSize())
-                        .brand(product.getBrandName())                        
+                        .brand(product.getBrand().getName())
+                        .category(product.getCategory().getName())
                         .build();
 
     }

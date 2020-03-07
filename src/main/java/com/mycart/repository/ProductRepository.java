@@ -10,11 +10,11 @@ import com.mycart.domain.Product;
 
 public interface ProductRepository extends CrudRepository<Product, Long>, JpaSpecificationExecutor<Product>{
     
-    Collection<Product> findAllByProductId(Long productId);
-    
-    Optional<Product> findByProductId(Long productId);
+    Optional<Product> findById(Long id);
     
     Collection<Product> findAll();
+    
+    Collection<Product> findAllByColor(String color);
     
     
 

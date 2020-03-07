@@ -2,9 +2,10 @@ package com.mycart.service;
 
 import static  com.mycart.common.SearchType.valueOf;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Service;
 import com.mycart.common.ProductSpecificationBuilder;
 import com.mycart.domain.Product;
 import com.mycart.repository.ProductRepository;
+import com.mycart.response.ProductResponse;
+import com.mycart.vo.ProductVO;
 
 import model.SearchResult;
 
@@ -23,7 +26,7 @@ public class ProductSearchService extends SearchResult<Product> {
 	@Autowired
 	private ProductRepository repositry;
 
-	public List<Product> getProductByCrieteria(final String crieteria) {
+	public ProductResponse getProductByCrieteria(final String crieteria) throws Exception{
 
 		ProductSpecificationBuilder builder = new ProductSpecificationBuilder();
 		Pattern pattern = Pattern.compile("(\\w+?)(:|<|>)(\\w+?),");
@@ -34,8 +37,10 @@ public class ProductSearchService extends SearchResult<Product> {
 		}
 		Specification<Product> spec = builder.build();
 
-		List<Product> products = repositry.findAll(spec);
-		return products;
+		Collection<Product> products = repositry.findAll(spec);
+		
+		Collection<ProductVO> productVOs = products.stream().map(ProductVO::from).collect(Collectors.toList());
+		return ProductResponse.from(productVOs);
 
 	}
 

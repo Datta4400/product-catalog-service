@@ -7,6 +7,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum SearchType {
 	BRAND("brand"),
+	CATEGORY("category"),
 	PRICE("price"),
 	COLOR("color"),
 	SIZE("size"),
