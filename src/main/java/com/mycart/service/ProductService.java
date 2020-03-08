@@ -42,12 +42,7 @@ public class ProductService {
 		return ProductVO.from(product);
 	}
 	
-	public ProductGroupByBrandResponse getProductByBrand(@NonNull Long id) throws Exception {
-		Collection<Product> products = repository.findAllByBrandId(id);
-		Collection<ProductVO> productVOs = products.stream().map(ProductVO::from).collect(Collectors.toList());
-		return ProductGroupByBrandResponse.from(productVOs);
-	}
-
+	
 	public ProductResponse getAllProduct() throws Exception {
 		Collection<Product> products = this.repository.findAll();
 		Collection<ProductVO> productVOs = products.stream().map(ProductVO::from).collect(Collectors.toList());
@@ -57,8 +52,7 @@ public class ProductService {
 
 	public ProductResponse addProducts(@NonNull Long brandId, @NonNull Long categoryId, Collection<ProductDto> productDtos) throws Exception {
 		
-		List<Product> products = productDtos.stream().map(Product::from).map( p -> {
-			p.setBrand(brandRepository.findById(brandId).orElseThrow(() -> new ProductServiceException(HttpStatus.BAD_REQUEST, ErrorCode.BRAND_NOT_FOUND)));
+		List<Product> products = productDtos.stream().map(Product::from).map( p -> {	
 			p.setCategory(categoryRepository.findById(categoryId).orElseThrow(() -> new ProductServiceException(HttpStatus.BAD_REQUEST, ErrorCode.CATEGORY_NOT_FOUND)));
 			return p ;
 		}).collect(Collectors.toList());

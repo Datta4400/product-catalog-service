@@ -1,8 +1,8 @@
 
 package com.mycart.vo;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.mycart.domain.Brand;
 
@@ -17,11 +17,10 @@ public class BrandVO {
 
 	private String description;
 	
-	@Builder.Default
-	private List<CategoryVO> categories = new ArrayList<CategoryVO>();
+	
 
 	public static BrandVO from(Brand brand) {
-		return BrandVO.builder().name(brand.getName()).description(brand.getDescription()).categories(CategoryVO.from(brand.getCategories()))
+		return BrandVO.builder().name(brand.getName()).description(brand.getDescription())
 				.build();
 	}
 

@@ -15,12 +15,13 @@ import lombok.NoArgsConstructor;
 @Builder
 public class CategoryDto {
 
-    private String name;
+	private String name;
 
-    private String description;
-    
-    @Builder.Default
-    List<ProductDto> products = new ArrayList<>();
-    
-    
+	private String description;
+
+	private Long brandId;
+
+	@Builder.Default
+	List<ProductDto> products = new ArrayList<>();
+
 }

@@ -47,7 +47,9 @@ public class BrandService {
 	}
 
 	public BrandResponse addBrand(BrandDto dto) {
-		return BrandResponse.from(this.repository.save(Brand.from(dto)));
+		Brand brand = Brand.from(dto);
+		
+		return BrandResponse.from(this.repository.save(brand));
 	}
 
 	public void deleteBrand(@NonNull final Long brandId) {

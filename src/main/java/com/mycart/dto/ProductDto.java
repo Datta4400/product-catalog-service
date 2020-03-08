@@ -24,5 +24,9 @@ public class ProductDto {
     private float size;
 
     private String sku;
+    
+    private Long brandId ;
+    
+    private Long categoryId ;
         
 }

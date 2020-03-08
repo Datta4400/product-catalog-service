@@ -40,9 +40,9 @@ public class Product {
 
 	private double price;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+/*	@ManyToOne(cascade = CascadeType.ALL)
 	private Brand brand;
-
+*/
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Category category;
 

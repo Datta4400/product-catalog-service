@@ -12,7 +12,7 @@ public interface ProductRepository extends CrudRepository<Product, Long>, JpaSpe
     
     Optional<Product> findById(Long id);
     
-    Collection<Product> findAllByBrandId(Long brandId);
+  //  Collection<Product> findAllByBrandId(Long brandId);
     
     Collection<Product> findAll();
     

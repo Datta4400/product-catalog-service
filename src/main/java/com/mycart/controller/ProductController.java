@@ -39,13 +39,7 @@ public class ProductController {
 
 	}
 
-	@GetMapping("/brand/{brandId}/product")
-	@ResponseStatus(code = HttpStatus.OK)
-	public ProductGroupByBrandResponse getProductByBrand(@Positive @PathVariable final Long brandId) throws Exception {
-		return this.service.getProductByBrand(brandId);
-	}
-
-	@GetMapping("/product/all")
+		@GetMapping("/product/all")
 	@ResponseStatus(code = HttpStatus.OK)
 	public ProductResponse getAllProduct() throws Exception {
 		return this.service.getAllProduct();

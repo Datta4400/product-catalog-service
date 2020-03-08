@@ -2,6 +2,7 @@
 package com.mycart.vo;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.mycart.domain.Category;
@@ -23,8 +24,8 @@ public class CategoryVO {
 		return CategoryVO.builder().name(category.getName()).description(category.getDescription()).build();
 	}
 
-	public static List<CategoryVO> from(List<Category> categories) {
-		return categories.stream().map(CategoryVO::from).collect(Collectors.toList());
+	public static Set<CategoryVO> from(Set<Category> categories) {
+		return categories.stream().map(CategoryVO::from).collect(Collectors.toSet());
 	}
 
 }
