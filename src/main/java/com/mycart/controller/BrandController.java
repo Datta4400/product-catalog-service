@@ -4,6 +4,7 @@ package com.mycart.controller;
 import java.util.Collection;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,7 +33,7 @@ public class BrandController {
 
 	@GetMapping("/{id}")
 	@ResponseStatus(code = HttpStatus.OK)
-	public BrandResponse getBrand(@PathVariable final Long id) throws Exception {
+	public BrandResponse getBrand(@Positive @PathVariable final Long id) throws Exception {
 		return this.service.getBrand(id);
 	}
 
