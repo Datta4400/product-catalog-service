@@ -28,7 +28,7 @@ import com.mycart.vo.BrandVO;
 public class BrandController {
 
 	@Autowired
-	BrandService service;
+	private BrandService service;
 
 	@GetMapping("/{id}")
 	@ResponseStatus(code = HttpStatus.OK)
