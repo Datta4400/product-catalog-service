@@ -22,10 +22,10 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class CategoryService {
     @Autowired
-    CategoryRepository repository;
+    private CategoryRepository repository;
     
     @Autowired
-    BrandRepository brandRepository ;
+   private BrandRepository brandRepository ;
 
     public CategoryResponse getCategory(final Long categoryId) throws Exception {
         return CategoryResponse.from(this.repository.findOneById(categoryId)

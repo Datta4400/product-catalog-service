@@ -7,11 +7,15 @@ import java.util.Set;
 import com.mycart.domain.Brand;
 import com.mycart.domain.Category;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class BrandVO {
 
 	private String name;

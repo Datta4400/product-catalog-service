@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class BrandResponse extends BaseResponse<BrandVO>{
     
-    public static final BrandResponse from(Brand brand) {
+    public static final BrandResponse from(BrandVO brandVO) {
         BrandResponse brandResponse = new BrandResponse();
-        brandResponse.setData(BrandVO.from(brand));
+        brandResponse.setData(brandVO);
         return brandResponse;
     }
     
