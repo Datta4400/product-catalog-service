@@ -24,7 +24,7 @@ import com.mycart.service.CategoryService;
 public class CategoryController {
 
     @Autowired
-    CategoryService service;
+    private CategoryService service;
 
     @GetMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK)
