@@ -18,5 +18,5 @@ public class BrandDto {
 	private String description;
 	
 	@Builder.Default
-	Set<CategoryDto> categories = new HashSet<>();
+	Set<Long> categories = new HashSet<>();
 }

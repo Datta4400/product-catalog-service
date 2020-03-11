@@ -1,8 +1,7 @@
 
 package com.mycart.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -12,17 +11,22 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mycart.dto.CategoryDto;
 import com.mycart.vo.CategoryVO;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Table(name = "category")
@@ -30,6 +34,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(exclude = {"parent","children","brands","products"})
+@ToString(exclude = {"parent","children","brands","products"})
 public class Category {
 
 	@Id
@@ -40,19 +46,30 @@ public class Category {
 
 	private String description;
 
+	@ManyToOne(targetEntity = Category.class, fetch = FetchType.LAZY)
+	@JoinColumn(name = "parentId")
+	private Category parent;
+
+	@JsonIgnore
+	@OneToMany(targetEntity = Category.class, cascade = CascadeType.ALL, mappedBy = "parent", fetch = FetchType.LAZY)
+	private Set<Category> children;
+
 	/*
 	 * @Builder.Default
 	 * 
 	 * @ManyToMany(mappedBy = "categories") private Set<Brand> brands = new
 	 * HashSet<>();
 	 */
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Brand brand;
+	@JsonIgnore
+	@Builder.Default
+	@ManyToMany(mappedBy = "categories",fetch = FetchType.LAZY)
+	private Set<Brand> brands = new HashSet<>();
 
 	@Builder.Default
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<Product> products = new ArrayList<>();
+	@OneToMany(targetEntity = Product.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "categoryId")
+	private Set<Product> products = new HashSet<>();
+	
 
 	public static final Category from(CategoryDto dto) {
 		return Category.builder().name(dto.getName()).description(dto.getDescription()).build();

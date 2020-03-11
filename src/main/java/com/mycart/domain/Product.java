@@ -4,13 +4,15 @@ package com.mycart.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mycart.dto.ProductDto;
 import com.mycart.vo.ProductVO;
 
@@ -40,10 +42,14 @@ public class Product {
 
 	private double price;
 
-/*	@ManyToOne(cascade = CascadeType.ALL)
+	@JsonIgnore
+	@ManyToOne(targetEntity = Brand.class, fetch = FetchType.EAGER)
+	@JoinColumn(name = "brandId")
 	private Brand brand;
-*/
-	@ManyToOne(cascade = CascadeType.ALL)
+
+	@JsonIgnore
+	@ManyToOne(targetEntity = Category.class, fetch = FetchType.EAGER)
+	@JoinColumn(name = "categoryId")
 	private Category category;
 
 	public static final Product from(ProductDto dto) {

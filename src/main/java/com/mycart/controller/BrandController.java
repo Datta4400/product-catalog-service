@@ -42,12 +42,7 @@ public class BrandController {
 		this.service.deleteBrand(id);
 	}
 
-	@GetMapping("/{name}")
-	@ResponseStatus(code = HttpStatus.OK)
-	public BrandResponse getBrand(@PathVariable final String name) throws Exception {
-		return this.service.getBrand(name);
-	}
-
+	
 	@GetMapping("all")
 	@ResponseStatus(code = HttpStatus.OK)
 	public Collection<BrandVO> getAllBrand() throws Exception {

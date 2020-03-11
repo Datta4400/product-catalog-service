@@ -2,6 +2,7 @@
 package com.mycart.service;
 
 import java.util.Collection;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +10,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.mycart.domain.Brand;
+import com.mycart.domain.Category;
 import com.mycart.dto.BrandDto;
 import com.mycart.exception.ErrorCode;
 import com.mycart.exception.ProductServiceException;
 import com.mycart.repository.BrandRepository;
+import com.mycart.repository.CategoryRepository;
 import com.mycart.response.BrandResponse;
 import com.mycart.vo.BrandVO;
 
@@ -24,6 +27,9 @@ import lombok.RequiredArgsConstructor;
 public class BrandService {
 	@Autowired
 	BrandRepository repository;
+	
+	@Autowired
+	CategoryRepository categoryRepositiry ;
 
 	public BrandResponse getBrand(final Long brandId) throws Exception {
 
@@ -47,8 +53,13 @@ public class BrandService {
 	}
 
 	public BrandResponse addBrand(BrandDto dto) {
-		Brand brand = Brand.from(dto);
 		
+		Brand brand = Brand.from(dto);
+		Set<Category> categories = categoryRepositiry.findAllByIdIn(dto.getCategories());
+		for(Category cat : categories) {
+			brand.getCategories().add(cat);
+		}
+		//brand.setCategories(categories);
 		return BrandResponse.from(this.repository.save(brand));
 	}
 

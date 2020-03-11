@@ -3,6 +3,7 @@ package com.mycart.repository;
 
 import java.util.Collection;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.data.repository.CrudRepository;
 
@@ -14,6 +15,7 @@ public interface BrandRepository extends CrudRepository<Brand, Long> {
     Optional<Brand> findOneById(Long id);
     Collection<Brand> findAll();
     
+    Set<Brand> findAllByIdIn(Set<Long> ids);
     void deleteById(Long id);
 
 }

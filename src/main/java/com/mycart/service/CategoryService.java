@@ -1,6 +1,8 @@
 
 package com.mycart.service;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -32,9 +34,16 @@ public class CategoryService {
     }
 
     public CategoryResponse addCategory(CategoryDto dto) {
-    	Brand brand = this.brandRepository.findById(dto.getBrandId()).orElseThrow(() -> new ProductServiceException(HttpStatus.BAD_REQUEST, ErrorCode.BRAND_NOT_FOUND));
+    	Set<Brand> brands = this.brandRepository.findAllByIdIn(dto.getBrandIds());
     	Category category = Category.from(dto);
-    	category.setBrand(brand);
+    	if(dto.getParentId() == 0) {
+    		category.setParent(null);
+    	}else {
+    		Category parentCategory = this.repository.findById(dto.getParentId()).orElseThrow(() -> new ProductServiceException(HttpStatus.BAD_REQUEST, ErrorCode.CATEGORY_NOT_FOUND));;
+    		category.setParent(parentCategory);
+    	}
+    	
+    	category.setBrands(brands);
         return CategoryResponse.from(this.repository.save(category));
     }
 

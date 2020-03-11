@@ -1,6 +1,7 @@
 
 package com.mycart.service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,7 +17,6 @@ import com.mycart.exception.ProductServiceException;
 import com.mycart.repository.BrandRepository;
 import com.mycart.repository.CategoryRepository;
 import com.mycart.repository.ProductRepository;
-import com.mycart.response.ProductGroupByBrandResponse;
 import com.mycart.response.ProductResponse;
 import com.mycart.vo.ProductVO;
 
@@ -34,7 +34,8 @@ public class ProductService {
 	private final CategoryRepository categoryRepository;
 
 	@Autowired
-	private final BrandRepository brandRepository;
+	private final BrandRepository brandRepository ;
+
 
 	public ProductVO getProduct(@NonNull Long id) throws Exception {
 		Product product = repository.findById(id)
@@ -50,12 +51,20 @@ public class ProductService {
 
 	}
 
-	public ProductResponse addProducts(@NonNull Long brandId, @NonNull Long categoryId, Collection<ProductDto> productDtos) throws Exception {
+	public ProductResponse addProducts(Collection<ProductDto> productDtos) throws Exception {
 		
-		List<Product> products = productDtos.stream().map(Product::from).map( p -> {	
-			p.setCategory(categoryRepository.findById(categoryId).orElseThrow(() -> new ProductServiceException(HttpStatus.BAD_REQUEST, ErrorCode.CATEGORY_NOT_FOUND)));
-			return p ;
-		}).collect(Collectors.toList());
+		List<Product> products = new ArrayList<>();
+		
+		for(ProductDto dto : productDtos) {
+			Product product = new Product();
+			product.setName(dto.getName());
+			product.setPrice(dto.getPrice());
+			product.setColor(dto.getColor());
+			product.setSku(dto.getSku());
+			product.setBrand(brandRepository.findById(dto.getBrandId()).orElseThrow(() -> new ProductServiceException(HttpStatus.BAD_REQUEST, ErrorCode.BRAND_NOT_FOUND)));
+			product.setCategory(categoryRepository.findById(dto.getCategoryId()).orElseThrow(() -> new ProductServiceException(HttpStatus.BAD_REQUEST, ErrorCode.BRAND_NOT_FOUND)));
+			products.add(product);
+		}
 		
 		this.repository.saveAll(products);
 		Collection<ProductVO> productVOs = products.stream().map(ProductVO::from).collect(Collectors.toList());

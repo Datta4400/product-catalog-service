@@ -38,7 +38,7 @@ public class ProductVO {
                         .color(product.getColor())
                         .sku(product.getSku())
                         .size(product.getSize())
-                        .brand(product.getCategory().getBrand().getName())
+                        .brand(product.getBrand().getName())
                         .category(product.getCategory().getName())
                         .build();
 

@@ -1,8 +1,8 @@
 
 package com.mycart.dto;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,10 +18,12 @@ public class CategoryDto {
 	private String name;
 
 	private String description;
-
-	private Long brandId;
+	
+	@Builder.Default
+	private Long parentId = 0L;
 
 	@Builder.Default
-	List<ProductDto> products = new ArrayList<>();
+	private Set<Long> brandIds = new HashSet<>();
+
 
 }
