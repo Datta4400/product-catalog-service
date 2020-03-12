@@ -1,8 +1,8 @@
 package com.mycart.response;
 
+import com.mycart.admin.entity.Brand;
+import com.mycart.admin.vo.BrandVO;
 import com.mycart.common.BaseResponse;
-import com.mycart.domain.Brand;
-import com.mycart.vo.BrandVO;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

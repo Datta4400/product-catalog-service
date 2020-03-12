@@ -4,9 +4,9 @@ package com.mycart.response;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+import com.mycart.admin.entity.Product;
+import com.mycart.admin.vo.ProductVO;
 import com.mycart.common.BaseResponse;
-import com.mycart.domain.Product;
-import com.mycart.vo.ProductVO;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

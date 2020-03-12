@@ -11,8 +11,9 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import com.mycart.admin.controller.CategoryController;
+import com.mycart.admin.service.CategoryService;
 import com.mycart.exception.GlobalExceptionHandller;
-import com.mycart.service.CategoryService;
 
 @RunWith(SpringRunner.class)
 @Import(GlobalExceptionHandller.class)

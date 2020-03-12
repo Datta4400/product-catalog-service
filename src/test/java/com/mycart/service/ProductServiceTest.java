@@ -8,9 +8,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import com.mycart.repository.BrandRepository;
-import com.mycart.repository.CategoryRepository;
-import com.mycart.repository.ProductRepository;
+import com.mycart.admin.repository.BrandRepository;
+import com.mycart.admin.repository.CategoryRepository;
+import com.mycart.admin.repository.ProductRepository;
+import com.mycart.admin.service.ProductService;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ProductServiceTest {

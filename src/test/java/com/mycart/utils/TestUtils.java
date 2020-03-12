@@ -4,8 +4,8 @@ import java.util.HashSet;
 import org.assertj.core.util.Sets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mycart.dto.BrandDto;
-import com.mycart.vo.BrandVO;
+import com.mycart.admin.dto.BrandDto;
+import com.mycart.admin.vo.BrandVO;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

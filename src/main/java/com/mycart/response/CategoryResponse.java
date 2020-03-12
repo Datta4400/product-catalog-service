@@ -1,8 +1,8 @@
 package com.mycart.response;
 
+import com.mycart.admin.entity.Category;
+import com.mycart.admin.vo.CategoryVO;
 import com.mycart.common.BaseResponse;
-import com.mycart.domain.Category;
-import com.mycart.vo.CategoryVO;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CategoryResponse extends BaseResponse<CategoryVO>{
     
-    public static final CategoryResponse from(Category category) {
+    public static final CategoryResponse from(CategoryVO categoryVO) {
         CategoryResponse categoryResponse = new CategoryResponse();
-        categoryResponse.setData(CategoryVO.from(category));
+        categoryResponse.setData(categoryVO);
         return categoryResponse;
     }
 

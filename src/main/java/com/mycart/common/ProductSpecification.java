@@ -8,11 +8,11 @@ import javax.persistence.criteria.Root;
 
 import org.springframework.data.jpa.domain.Specification;
 
-import com.mycart.domain.Brand;
-import com.mycart.domain.Product;
+import com.mycart.admin.entity.Brand;
+import com.mycart.admin.entity.Product;
+import com.mycart.user.model.ProductSerachCrieteria;
 
 import lombok.AllArgsConstructor;
-import model.ProductSerachCrieteria;
 
 @AllArgsConstructor
 public class ProductSpecification implements Specification<Product> {

@@ -9,8 +9,9 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.mycart.repository.BrandRepository;
-import com.mycart.repository.CategoryRepository;
+import com.mycart.admin.repository.BrandRepository;
+import com.mycart.admin.repository.CategoryRepository;
+import com.mycart.admin.service.BrandService;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BrandServiceTest {

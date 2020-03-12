@@ -24,11 +24,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import com.mycart.dto.BrandDto;
+import com.mycart.admin.controller.BrandController;
+import com.mycart.admin.dto.BrandDto;
+import com.mycart.admin.service.BrandService;
+import com.mycart.admin.vo.BrandVO;
 import com.mycart.exception.GlobalExceptionHandller;
 import com.mycart.response.BrandResponse;
-import com.mycart.service.BrandService;
-import com.mycart.vo.BrandVO;
 
 @RunWith(SpringRunner.class)
 @Import(GlobalExceptionHandller.class)

@@ -6,10 +6,10 @@ import java.util.stream.Collectors;
 
 import org.springframework.data.jpa.domain.Specification;
 
-import com.mycart.domain.Product;
+import com.mycart.admin.entity.Product;
+import com.mycart.user.model.ProductSerachCrieteria;
 
 import lombok.AllArgsConstructor;
-import model.ProductSerachCrieteria;
 
 @AllArgsConstructor
 public class ProductSpecificationBuilder {
