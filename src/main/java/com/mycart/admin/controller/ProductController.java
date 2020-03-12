@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mycart.admin.dto.ProductDto;
 import com.mycart.admin.service.ProductService;
 import com.mycart.admin.vo.ProductVO;
-import com.mycart.response.ProductResponse;
+import com.mycart.response.GetAllProductResponse;
 
 @RestController
 @Validated
@@ -40,14 +40,14 @@ public class ProductController {
 
 	@GetMapping("/all")
 	@ResponseStatus(code = HttpStatus.OK)
-	public ProductResponse getAllProduct() throws Exception {
+	public GetAllProductResponse getAllProduct() throws Exception {
 		return this.service.getAllProduct();
 
 	}
 
 	@PostMapping(consumes = "application/json")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public ProductResponse addProducts(@RequestBody @NotNull Collection<ProductDto> productDtos) throws Exception {
+	public GetAllProductResponse addProducts(@RequestBody @NotNull Collection<ProductDto> productDtos) throws Exception {
 		return this.service.addProducts(productDtos);
 
 	}

@@ -15,7 +15,7 @@ import com.mycart.admin.entity.Product;
 import com.mycart.admin.repository.ProductRepository;
 import com.mycart.admin.vo.ProductVO;
 import com.mycart.common.ProductSpecificationBuilder;
-import com.mycart.response.ProductResponse;
+import com.mycart.response.GetAllProductResponse;
 import com.mycart.user.model.SearchResult;
 
 
@@ -25,7 +25,7 @@ public class ProductSearchService extends SearchResult<Product> {
 	@Autowired
 	private ProductRepository repositry;
 
-	public ProductResponse getProductByCrieteria(final String crieteria) throws Exception{
+	public GetAllProductResponse getProductByCrieteria(final String crieteria) throws Exception{
 
 		ProductSpecificationBuilder builder = new ProductSpecificationBuilder();
 		Pattern pattern = Pattern.compile("(\\w+?)(:|<|>)(\\w+?),");
@@ -39,7 +39,7 @@ public class ProductSearchService extends SearchResult<Product> {
 		Collection<Product> products = repositry.findAll(spec);
 		
 		Collection<ProductVO> productVOs = products.stream().map(ProductVO::from).collect(Collectors.toList());
-		return ProductResponse.from(productVOs);
+		return GetAllProductResponse.from(productVOs);
 
 	}
 

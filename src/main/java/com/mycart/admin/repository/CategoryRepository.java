@@ -15,8 +15,9 @@ public interface CategoryRepository extends CrudRepository<Category, Long>{
     
     Set<Category> findAllByIdIn(Set<Long> ids);
     
-    Collection<Category> findAll();
-	Collection<Category> findByParentIsNull();
+    Set<Category> findAll();
+	Set<Category> findByParentIsNull();
+	Set<Category> findAllByParentId(Long parentId);
 
    // Collection<Category> findAllByBrandId(Long id);
 }

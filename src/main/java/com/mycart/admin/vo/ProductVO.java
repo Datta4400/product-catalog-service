@@ -1,7 +1,7 @@
 
 package com.mycart.admin.vo;
 
-import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.mycart.admin.entity.Product;
@@ -44,11 +44,11 @@ public class ProductVO {
 
     }
 
-    public static final List<ProductVO> from(List<Product> products) {
+    public static final Set<ProductVO> from(Set<Product> products) {
 
         return products.stream()
                        .map(ProductVO::from)
-                       .collect(Collectors.toList());
+                       .collect(Collectors.toSet());
 
     }
 

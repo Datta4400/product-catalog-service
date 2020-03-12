@@ -29,7 +29,8 @@ import com.mycart.admin.dto.BrandDto;
 import com.mycart.admin.service.BrandService;
 import com.mycart.admin.vo.BrandVO;
 import com.mycart.exception.GlobalExceptionHandller;
-import com.mycart.response.BrandResponse;
+
+import com.mycart.response.GetBrandResponse;
 
 @RunWith(SpringRunner.class)
 @Import(GlobalExceptionHandller.class)
@@ -50,14 +51,14 @@ public class BrandControllerTest {
 		final BrandDto brandDto = getMockBrandDto();
 		
 		final BrandVO brandVO = getBrandVO();
-		when(this.brandService.addBrand(brandDto)).thenReturn(BrandResponse.from(brandVO));
+		when(this.brandService.addBrand(brandDto)).thenReturn(GetBrandResponse.from(brandVO));
 		final MvcResult result = this.mockMvc
 				.perform(post("/mycart/brand").accept(MediaType.APPLICATION_JSON_UTF8)
 						.contentType(MediaType.APPLICATION_JSON_UTF8).content(MAPPER.writeValueAsBytes(brandDto)))
 				.andExpect(status().isCreated()).andReturn();
 
-		final BrandResponse actual = MAPPER.readValue(result.getResponse().getContentAsByteArray(),
-				BrandResponse.class);
+		final GetBrandResponse actual = MAPPER.readValue(result.getResponse().getContentAsByteArray(),
+				GetBrandResponse.class);
 
 		assertThat(actual.getData().getName()).isNotNull();
 		assertThat(actual.getData().getCategories()).isNotNull();
@@ -69,12 +70,12 @@ public class BrandControllerTest {
 
 		
 		final BrandVO brandVO = getBrandVO();
-		when(this.brandService.getBrand(TEST_BRAND_ID)).thenReturn(BrandResponse.from(brandVO));
+		when(this.brandService.getBrand(TEST_BRAND_ID)).thenReturn(GetBrandResponse.from(brandVO));
 		final MvcResult result = this.mockMvc.perform(get("/mycart/brand/{id}", 1)).andExpect(status().isOk())
 				.andExpect(jsonPath("$.data.name", is(equalTo(brandVO.getName())))).andReturn();
 
-		final BrandResponse actual = MAPPER.readValue(result.getResponse().getContentAsByteArray(),
-				BrandResponse.class);
+		final GetBrandResponse actual = MAPPER.readValue(result.getResponse().getContentAsByteArray(),
+			GetBrandResponse.class);
 
 		assertThat(actual.getData().getName()).isNotNull();
 		assertThat(actual.getData().getCategories()).isNotNull();

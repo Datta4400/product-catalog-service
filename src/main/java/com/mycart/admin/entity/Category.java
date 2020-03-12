@@ -52,6 +52,7 @@ public class Category {
 	private Category parent;
 
 	
+	@JsonIgnore
 	@OneToMany(targetEntity = Category.class, cascade = CascadeType.ALL, mappedBy = "parent", fetch = FetchType.LAZY)
 	private Set<Category> children;
 
@@ -66,6 +67,7 @@ public class Category {
 	@ManyToMany(mappedBy = "categories",fetch = FetchType.LAZY)
 	private Set<Brand> brands = new HashSet<>();
 
+	@JsonIgnore
 	@Builder.Default
 	@OneToMany(targetEntity = Product.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "categoryId")
@@ -81,7 +83,7 @@ public class Category {
 	}
 
 	public static final CategoryVO from(Category category) {
-		return CategoryVO.builder().name(category.getName()).subCategories(category.getChildren()).description(category.getDescription()).build();
+		return CategoryVO.builder().name(category.getName()).subCategories(CategoryVO.from(category.getChildren())).description(category.getDescription()).build();
 	}
 
 }

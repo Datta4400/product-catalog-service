@@ -18,7 +18,7 @@ import com.mycart.admin.repository.ProductRepository;
 import com.mycart.admin.vo.ProductVO;
 import com.mycart.exception.ErrorCode;
 import com.mycart.exception.ProductServiceException;
-import com.mycart.response.ProductResponse;
+import com.mycart.response.GetAllProductResponse;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -44,14 +44,14 @@ public class ProductService {
 	}
 	
 	
-	public ProductResponse getAllProduct() throws Exception {
+	public GetAllProductResponse getAllProduct() throws Exception {
 		Collection<Product> products = this.repository.findAll();
 		Collection<ProductVO> productVOs = products.stream().map(ProductVO::from).collect(Collectors.toList());
-		return ProductResponse.from(productVOs);
+		return GetAllProductResponse.from(productVOs);
 
 	}
 
-	public ProductResponse addProducts(Collection<ProductDto> productDtos) throws Exception {
+	public GetAllProductResponse addProducts(Collection<ProductDto> productDtos) throws Exception {
 		
 		List<Product> products = new ArrayList<>();
 		
@@ -68,7 +68,7 @@ public class ProductService {
 		
 		this.repository.saveAll(products);
 		Collection<ProductVO> productVOs = products.stream().map(ProductVO::from).collect(Collectors.toList());
-		return ProductResponse.from(productVOs);
+		return GetAllProductResponse.from(productVOs);
 
 	}
 	

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mycart.response.ProductResponse;
+import com.mycart.response.GetAllProductResponse;
 import com.mycart.user.service.ProductSearchService;
 
 @RestController
@@ -22,7 +22,7 @@ public class ProductSearchController {
 
 	@GetMapping("/search")
 	@ResponseStatus(code = HttpStatus.OK)
-	public ProductResponse getProductBySearchCrieteria(@RequestParam final String crieteria) throws Exception {
+	public GetAllProductResponse getProductBySearchCrieteria(@RequestParam final String crieteria) throws Exception {
 
 		return this.service.getProductByCrieteria(crieteria);
 

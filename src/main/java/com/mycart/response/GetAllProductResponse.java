@@ -12,10 +12,10 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class ProductResponse extends BaseResponse<Collection<ProductVO>> {
+public class GetAllProductResponse extends BaseResponse<Collection<ProductVO>> {
 
-	public static final ProductResponse from(Collection<ProductVO> productVOs) {
-		ProductResponse productResponse = new ProductResponse();
+	public static final GetAllProductResponse from(Collection<ProductVO> productVOs) {
+		GetAllProductResponse productResponse = new GetAllProductResponse();
 		productResponse.setData(productVOs);
 		return productResponse;
 	}

@@ -21,7 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mycart.admin.dto.BrandDto;
 import com.mycart.admin.service.BrandService;
 import com.mycart.admin.vo.BrandVO;
-import com.mycart.response.BrandResponse;
+import com.mycart.response.GetAllBrandResponse;
+import com.mycart.response.GetBrandResponse;
 
 @RestController
 @Validated
@@ -33,28 +34,29 @@ public class BrandController {
 
 	@GetMapping("/{id}")
 	@ResponseStatus(code = HttpStatus.OK)
-	public BrandResponse getBrand(@Positive @PathVariable final Long id) throws Exception {
+	public GetBrandResponse getBrand(@Positive @PathVariable final Long id) throws Exception {
 		return this.service.getBrand(id);
 	}
-
-	@DeleteMapping("/{id}")
-	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void deleteBrand(@PathVariable final Long id) throws Exception {
-		this.service.deleteBrand(id);
-	}
-
 	
 	@GetMapping("all")
 	@ResponseStatus(code = HttpStatus.OK)
-	public Collection<BrandVO> getAllBrand() throws Exception {
+	public GetAllBrandResponse getAllBrand() throws Exception {
 		return this.service.getAllBrands();
 
 	}
 
 	@PostMapping(consumes = "application/json")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public BrandResponse addBrand(@RequestBody @NotNull BrandDto dto) throws Exception {
+	public GetBrandResponse addBrand(@RequestBody @NotNull BrandDto dto) throws Exception {
 		return this.service.addBrand(dto);
 	}
+	
+
+	@DeleteMapping("/{id}")
+	@ResponseStatus(code = HttpStatus.NO_CONTENT)
+	public void deleteBrand(@Positive @PathVariable final Long id) throws Exception {
+		this.service.deleteBrand(id);
+	}
+
 
 }
